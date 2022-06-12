@@ -18,7 +18,6 @@ const FullPizza = () => {
 
     const totalCartItems = useSelector(cartSelectById(userId));
 
-
     const totalCountItems = totalCartItems ? totalCartItems.count : 0
 
     const onClickAddItem = () => {
@@ -28,6 +27,8 @@ const FullPizza = () => {
 
         dispatch(addItem(item))
     }
+
+    console.log("FULLPIZZA")
 
     useEffect(() => {
         async function fetchPizza(){
