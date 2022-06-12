@@ -83,3 +83,10 @@
     100.0% {transform: scale(1); color: $greenTheme}
     
 }
+
+@media all and (max-width: 460px) {
+    .footer{
+    right: 50px;
+    bottom: 0px;
+    }
+}

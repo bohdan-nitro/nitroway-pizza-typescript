@@ -94,3 +94,24 @@
     letter-spacing: 0.015em;
   }
 }
+
+@media all and (max-width: 500px) {
+  .pizza-block{
+    max-width: 100%;
+    margin-bottom: 50px;
+    &:nth-child(3) {
+      margin-right: 0;
+      margin-left: 0px;
+    }
+    &:nth-child(2) {
+      margin-left: 0px;
+    }
+    &:nth-child(5) {
+      margin-left: 0px;
+    }
+    &:nth-child(6) {
+      margin-right: 0;
+      margin-left: 0px;
+    }
+  }
+}

@@ -94,7 +94,7 @@ function PizzaBlock({id, name, imageUrl, price, types, sizes,}) {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от {price} UAH</div>
+                <div className="pizza-block__price">{price} UAH</div>
                 <Button onClick={onClickAddItem} className={"button--add"} outline>
                     <svg
                         width="12"
