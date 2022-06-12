@@ -433,8 +433,116 @@ body {
       }
     }
     .content{
+      padding: 20px 0;
+      .container--cart{
+        margin: 25px 0;
+        .cart--empty{
+          width: 100%;
+          p{
+            font-size: 16px;
+            font-weight: 700;
+            color: $black;
+          }
+        }
+        .cart{
+          .cart__bottom{
+            margin: 25px 0;
+            .cart__bottom-details{
+              display: flex;
+              width: 100%;
+              flex-direction: column;
+              span{
+                width: 100%;
+                justify-content: space-between;
+                display: flex;
+                padding: 5px 0;
+              }
+            }
+            .cart__bottom-buttons{
+              margin-top: 20px;
+              .go-back-btn{
+                width: 45%;
+                padding: 11px;
+              }
+              .pay-btn{
+                width: 45%;
+                padding: 11px;
+              }
+            }
+          }
+          .content__items{
+            .cart__item{
+              flex-direction: column;
+              position: relative;
+              .cart__item-img{
+                width: 100%;
+                justify-content: center;
+                img{
+                  width: 100%;
+                  object-fit: cover;
+                  height: 100%;
+                }
+
+              }
+              .cart__item-info{
+                width: 100%;
+                text-align: center
+              }
+              .cart__item-count{
+                width: 100%;
+                padding: 10px 0px;
+              }
+              .cart__item-remove{
+                position: absolute;
+                right: 10px;
+              }
+              .cart__item-price{
+                width: 100%;
+              }
+            }
+            
+          }
+        }
+      }
       .container{
         width: 100%;
+        
+        .pizza-wrapper{
+          flex-direction: column;
+          padding: 60px 0 20px 0;
+          .left-side{
+            width: 100%;
+            padding-bottom: 10px;
+          }
+          .right-side{
+            width: 100%;
+            .content-wrapper{
+              border: 1px solid $greenTheme;
+              border-radius: 8px;
+              padding: 10px;
+              .title-wrapper{
+                text-align: center;
+              }
+              box-shadow: 1px 1px 10px 4px #999292 ;
+              .content-box{
+                margin-top: 0;
+                .description-wrapper{
+                  text-align: center;
+                  .description{
+                    font-size: 18px;
+                  }
+                }
+                .info-wrapper{
+                  padding: 0 30px;
+                  .price{
+                    color: $greenTheme;
+                    font-size: 18px;
+                  }
+                }
+              }
+            }
+          }
+        }
         .content__top{
           div{
             display: flex;
