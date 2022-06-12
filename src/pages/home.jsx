@@ -108,7 +108,6 @@ function Home() {
 
 
     //Отлавливаем url 
-
     useEffect(() => {
 
         if (isMounted.current) {
@@ -132,8 +131,6 @@ function Home() {
     const onChangePaginationPage = (num) => {
         dispatch(setPaginationId(num))
     }
-
-
     //Получает названия типа и будет его передавать в редакс
     const onSelectSortType = React.useCallback((type) => {
         dispatch(setSort(type));
