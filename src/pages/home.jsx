@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {Link} from "react-router-dom";
+import React, { useEffect, useRef } from 'react';
 
 import { Categories, PizzaBlock, SortPopUp, PizzaLoadingBlock } from "../components";
 
@@ -16,8 +15,6 @@ import { fetchPizzasToolKit, selectPizzaData } from "../reduxToolkit/slices/pizz
 import Pagination from '../components/Pagination';
 
 import { sortList } from '../components/sortPopUp';
-
-import Footer from '../components/Footer/Footer';
 
 
 

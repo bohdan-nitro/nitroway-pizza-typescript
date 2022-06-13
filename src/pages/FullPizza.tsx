@@ -1,34 +1,30 @@
-import React, {useEffect, useState} from "react";
-import {useParams, useNavigate, useLocation} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { PizzaLoadingBlock } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, cartSelectById } from "../reduxToolkit/slices/cartSlice";
 import {Button} from "../components";
-import LoadingBlockFullPizza from "../components/PizzaBlock/LoadingBlockFullPizza";
 
 
-const FullPizza = () => {
+const FullPizza: React.FC = () => {
 
 
-    const [pizza, setPizza] = useState();
+    const [pizza, setPizza] = useState<{id: string, name: string,imageUrl: string,price: number,description: string}>();
+
     const {userId} = useParams();
+
     const navigate = useNavigate();
+
     const dispatch = useDispatch();
 
     const totalCartItems = useSelector(cartSelectById(userId));
 
-    const totalCountItems = totalCartItems ? totalCartItems.count : 0
+    const totalCountItems = totalCartItems ? totalCartItems.count : 0;
 
     const onClickAddItem = () => {
-        const {id,name,imageUrl,price} = pizza;
-
-        const item = {id, name, imageUrl, price};
-
-        dispatch(addItem(item))
+        dispatch(addItem(pizza))
     }
-
-    console.log("FULLPIZZA")
 
     useEffect(() => {
         async function fetchPizza(){
@@ -42,6 +38,7 @@ const FullPizza = () => {
         }
         fetchPizza()
     }, [])
+
 
     if(!pizza){
         return <PizzaLoadingBlock/>

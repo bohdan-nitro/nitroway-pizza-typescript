@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 
 // import store from "./redux/store";
@@ -14,6 +14,8 @@ import "./scss/app.scss"
 import App from './App';
 
 
+const rootElem = document.getElementById('root');
+
 
 
 ReactDOM.render(
@@ -22,6 +24,6 @@ ReactDOM.render(
               <App/>
           </Provider>
       </BrowserRouter>,
-  document.getElementById('root')
+  rootElem
 );
 
