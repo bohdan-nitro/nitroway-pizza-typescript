@@ -11,7 +11,7 @@ import {cartSelect} from "../reduxToolkit/slices/cartSlice";
 
 
 
-function Header() {
+const Header: React.FC = () => {
     //Версия с редакс-тулкит
     const {totalPrice, items} = useSelector(cartSelect)
     const location = useLocation();
@@ -20,9 +20,8 @@ function Header() {
 
     const {pathname} = location;
 
-    console.log(location)
 
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
 
     return (
@@ -41,7 +40,7 @@ function Header() {
                 {pathname == `/pizza/${userId}` ? <></> : <Search/>}
                 <div className="header__cart">
                     <Link to={"/cart"}>
-                        <Button className={"button--cart"}>
+                        <Button onClick={() => console.log("click")} outline={false} className={"button--cart"}>
                             <span>{totalPrice} UAH</span>
                             <div className="button__delimiter"></div>
                             <svg

@@ -138,6 +138,7 @@ function Home() {
 
     const pizzas = items.map((obj) => (
          <PizzaBlock
+            key={obj.id}
             {...obj}
         />
         ))

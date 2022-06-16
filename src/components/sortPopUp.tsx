@@ -4,7 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setSort, selectSort } from '../reduxToolkit/slices/filterSlice';
 
-export const sortList = [
+export type ISortList = {
+    name: string;
+    sortProperty: string
+}
+
+type M = MouseEvent & {
+    path: Node[];
+}
+
+export const sortList: ISortList[] = [
     { name: 'популярности (DESC)', sortProperty:"raiting" },
     { name: 'популярности (ASC)', sortProperty: "-raiting"},
     { name: 'цене (DESC)', sortProperty: "price" },
@@ -14,19 +23,17 @@ export const sortList = [
   ];
 
 
-const SortPopUp = () => {
+const SortPopUp: React.FC = () => {
     const sortData = useSelector(selectSort)
 
     const dispatch = useDispatch();
 
     const [visiblePopUp, setVisiblePopUp] = React.useState(false);
 
-    const sortRef = React.useRef();
+    const sortRef = React.useRef<HTMLDivElement>(null);
 
 
-
-
-    const onSelectItem = (obj) => {
+    const onSelectItem = (obj : ISortList) => {
         dispatch(setSort(obj))
         setVisiblePopUp(false);
     };
@@ -35,11 +42,17 @@ const SortPopUp = () => {
         setVisiblePopUp(!visiblePopUp);
     };
     //Указываем  конкретную область клика, и спрашиваем содержит ли эта область те значения которые нам нужны через сортреф
-    const handeOutSideClick = (event) => {
-        const path = event.path || (event.composedPath && event.composedPath());
-        if (!path.includes(sortRef.current)) {
-            setVisiblePopUp(false);
-        }  
+    const handeOutSideClick = (event: M | Event) => {
+        // const path = event.path || (event.composedPath && event.composedPath());
+
+        // if (!path.includes(sortRef.current)) {
+        //     setVisiblePopUp(false);
+        // }  
+        const _event = event as M;
+
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
+        setVisiblePopUp(false);
+      }
     };
     React.useEffect(() => {
         document.body.addEventListener("click", handeOutSideClick)
@@ -72,7 +85,7 @@ const SortPopUp = () => {
                     {sortList &&
                     sortList.map((obj, index) => (
                         <li onClick={() => onSelectItem(obj)} className={sortData.sortProperty === obj.sortProperty ? "active" : ""}
-                            key={`${obj.type}_${index}`}>{obj.name}</li>))}
+                            key={`${obj.sortProperty}_${index}`}>{obj.name}</li>))}
                 </ul>
             </div>}
         </div>

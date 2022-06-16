@@ -5,9 +5,16 @@ import { useDispatch } from 'react-redux';
 
 import { addItem, minusItem, removeItem } from '../reduxToolkit/slices/cartSlice';
 
+type ICartItem = {
+    id: string
+    name: string
+    type: string
+    size: number
+    totalPrice: number
+    totalCount: number
+}
 
-//Вытаскиваем пропсы из компонента Cart
-const CartItem = ({id, name, type, size, totalPrice, totalCount, onRemove, onMinus, onPlus}) => {
+const CartItem: React.FC<ICartItem> = ({id, name, type, size, totalPrice, totalCount}) => {
 
     const dispatch = useDispatch();
 

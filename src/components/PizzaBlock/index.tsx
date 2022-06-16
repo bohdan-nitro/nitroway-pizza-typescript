@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 import classNames from "classnames";
 import Button from "../button";
 import {Link} from "react-router-dom"
@@ -9,17 +9,24 @@ import {useSelector, useDispatch} from "react-redux";
 import {addItem, cartSelectById} from "../../reduxToolkit/slices/cartSlice";
 
 
+type IPizzaProps = {
+    id: string
+    name: string
+    imageUrl: string
+    price: number
+    types: number[]
+    sizes: number[]
+}
 
-function PizzaBlock({id, name, imageUrl, price, types, sizes,}) {
+const PizzaBlock: React.FC<IPizzaProps> = ({id, name, imageUrl, price, types, sizes}) => {
     
-    //Массив с данными типы пиц
     const typeNames = ["тонкое", "традиционное"];
-    //Массив с данными размеры пиц
+
     const availableSizes = [26, 30, 40];
-    //Стейт для выбора типа пицы
+
     const [activeType, setActiveType] = useState(types[0]);
-    //Стейт для выбора размера
-    const [activeSize, setActiveSize] = useState(0);
+
+    const [activeSize, setActiveSize] = useState<number>(0);
 
     const dispatch = useDispatch();
 
@@ -29,10 +36,10 @@ function PizzaBlock({id, name, imageUrl, price, types, sizes,}) {
     const totalCountItems = totalCartItems ? totalCartItems.count : 0
 
 
-    const onSelectType = (index) => {
+    const onSelectType = (index: number) => {
         setActiveType(index);
     };
-    const onSelectSize = (index) => {
+    const onSelectSize = (index: number) => {
         setActiveSize(index);
     };
 
@@ -108,30 +115,12 @@ function PizzaBlock({id, name, imageUrl, price, types, sizes,}) {
                             fill="white"
                         />
                     </svg>
-                    <span>Добавить</span>
-                    {totalCountItems > 0 && <i>{totalCountItems}</i>}
+                    <span>Добавить {totalCountItems > 0 && <i>{totalCountItems}</i>}</span>
+                    
                 </Button>
             </div>
         </div>
     );
 }
-
-PizzaBlock.propTypes = {
-    name: PropTypes.string,
-    price: PropTypes.number,
-    imageUrl: PropTypes.string,
-    types: PropTypes.arrayOf(PropTypes.number),
-    sizes: PropTypes.arrayOf(PropTypes.number),
-    onClickAddPizza: PropTypes.func,
-    addedCount: PropTypes.number,
-};
-
-PizzaBlock.defaultProps = {
-    name: "---",
-    price: 0,
-    types: [],
-    sizes: [],
-};
-
 
 export default PizzaBlock;
